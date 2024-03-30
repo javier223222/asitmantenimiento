@@ -9,6 +9,7 @@
     <title>Actualizar Tecnico</title>
 </head>
 <body>
+    
 
     <form action={{route("actualizarTecnico",["id"=>$admin->id])}} method="POST">
         @csrf
@@ -53,6 +54,6 @@
 
         <button  class="btn btn-primary">Actualizar tecnico</button>
       </form>
-{{$admin}}
+
 </body>
 </html>
