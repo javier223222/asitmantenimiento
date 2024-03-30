@@ -31,6 +31,7 @@ Route::middleware("authenticationSuperAdmin")->group(function(){
     Route::delete("/deletetecnico/{id}",[HomeSuperAdminController::class,"deleteTecnico"])->name("deleteTecnico");
     Route::get("/updateTecnico/{id}",[HomeSuperAdminController::class,"updateTecnico"])->name("updateTecnico");
     Route::middleware("authformupdatetec")->patch("/updateTecnico/{id}",[HomeSuperAdminController::class,"actualizarTecnico"])->name("actualizarTecnico");
+    Route::post("/searchtecnico",[HomeSuperAdminController::class,"searchTecnico"])->name("searchTecnico");
 });
 
 Route::middleware("authenticationAdmin")->group(function(){
@@ -44,3 +45,4 @@ Route::middleware("authenticationAdmin")->group(function(){
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

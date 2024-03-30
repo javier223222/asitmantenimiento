@@ -11,11 +11,15 @@ class HomeSuperAdminController extends Controller
 {
     public function index(){
 
-        $admins=Admin::where("id_role",3)->orderBy("created_at")->get();
+        $admins=Admin::where("id_role",3)->orderBy("created_at")->paginate(20);
+
 
         return view("admin.superadmin.index",
         [
-            "admins"=>$admins
+            "admins"=>$admins->items(),
+            "totalpages"=>$admins->lastPage(),
+            "currentpage"=>$admins->currentPage(),
+            "isSearch"=>false
         ]);
     }
     public function addTecnico(){
@@ -85,5 +89,15 @@ class HomeSuperAdminController extends Controller
         return redirect()->route("superadmin",[
             "admins"=>Admin::where("id_role",3)->orderBy("created_at")->get()
         ]);
+    }
+    public function searchTecnico(Request $request){
+        $search=$request->input("search");
+        $admins=Admin::where("id_role",3)->where("name","like","%$search%")->orderBy("created_at")->paginate(20);
+         return view("admin.superadmin.index",[
+            "admins"=>$admins,
+            "totalpages"=>1,
+            "currentpage"=>1,
+            "isSearch"=>true
+         ]);
     }
 }

@@ -11,6 +11,8 @@
 </head>
 <body>
 
+
+
     <nav style="background-color: #1F1F29" class="navbar bg-body-tertiary">
         <div style="background-color: #1F1F29" class="container">
             <form action="{{ route('logoutA') }}" method="POST">
@@ -21,16 +23,30 @@
       </nav>
 
 
+      <form action={{route("searchTecnico")}} method="POST" class="input-group">
+        @csrf
+        <input type="search" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button  class="btn btn-outline-primary">Buscar</button>
+      </form>
+
 
 <div>
     <a href={{route("addTecnico")}} class="btn btn-primary">Agregar tecnico</a>
 
 </div>
+@if ($isSearch)
+<div>
+    <a href={{route("superadmin")}} class="btn btn-primary">Ver a todos los tecnicos</a>
+
+</div>
+
+@endif
+
 
     @if (empty($admins[0]))
         <h1>no hay tecnicos</h1>
     @else
-    <div class="row">
+     <div class="row">
       @foreach ($admins as $item)
       <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card" style="width: 18rem;">
@@ -60,9 +76,37 @@
       </div>
 </div>
 
-    @endif
+
+     @endif
+
+     @if (empty($admins[0]))
+
+     @else
+     <div class="container">
+        <div class="row">
+
+     @if ($totalpages>1)
+
+    @for ($i = 1; $i <= $totalpages; $i++)
 
 
+    <div class="col-sm">
+
+        <a href={{route("superadmin",["page"=>$i])}}>{{$i}}</a>
+
+
+    </div>
+
+
+@endfor
+
+     @endif
+
+</div>
+
+     @endif
+
+</div>
 
 
 </body>
