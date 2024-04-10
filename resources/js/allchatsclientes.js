@@ -2,12 +2,24 @@ import axios from "axios"
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 let id=document.getElementById("idchat").value
 let sectionmessage=document.getElementById("sectionmessage")
+const forma = document.getElementById("formsendmessage");
 let mesagges=[]
 axios.get("/allchats?id="+id).then(response => {
     mesagges=mesagges.concat(response.data.result)
     console.log(mesagges)
     pinstarmesaages()
 })
+
+forma.addEventListener("submit", (e) => {
+  e.preventDefault()
+    let message=document.getElementById("message").value
+    axios.post(`/broadcast?message=${message}&id=${id}
+`).then(response => {
+    console.log(response.data)
+})
+})
+
+
 
 // Enable pusher logging - don't include this in production
 Pusher.logToConsole = true;
@@ -35,7 +47,7 @@ const pinstarmesaages=()=>{
         if(message.cliente!=null){
             div.style.backgroundColor="#2FB3F1"
             div.innerHTML=`
-                <p>tu</p>
+                <p>cliente</p>
                 <p>${message.message}</p>
             `
         }else{

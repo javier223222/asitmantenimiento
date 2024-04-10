@@ -18,7 +18,7 @@
 
     <div>
 
-        <form action="{{route("broadcast")}}" method="post">
+        <form id="formsendmessage">
             @csrf
             <input type="text" name="message" id="message">
             <input name="id" style="visibility: hidden" id="idchat" type="text" value={{$id}}>

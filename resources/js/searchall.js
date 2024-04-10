@@ -16,8 +16,9 @@ const showall = document.getElementById("showall");
         showall.classList.add("notshow")
         searchsection.classList.remove("notshow")
         if(searchsomething!=""){
-            axios.get(`/searchmantenimiento?search=${searchsomething}&option=${typeOfSearch}`).then(response => {
-               pintar(response.data.result)
+            fetch(`/searchmantenimiento?search=${searchsomething}&option=${typeOfSearch}`).then(response=>response.text()).then(html=>{
+                console.log(html)
+                searchsection.innerHTML=html
             })
         }
       }else{

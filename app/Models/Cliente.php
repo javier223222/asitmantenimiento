@@ -16,7 +16,8 @@ class Cliente extends Model
         "last_name",
         "mother_last_name",
         "email",
-        "telefono"
+        "telefono",
+        "completname"
 
     ];
 

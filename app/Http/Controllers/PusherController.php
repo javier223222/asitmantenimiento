@@ -43,7 +43,7 @@ class PusherController extends Controller
                 "foliId"=>$id,
                 "message"=>$message,
             ]);
-           return redirect()->back();
+           return response()->json(["message"=>"success"],200);
 
         }else
         if($superAdmin){
@@ -66,7 +66,7 @@ class PusherController extends Controller
                 "message"=>$message
             ]);
 
-            return redirect()->back();
+            return response()->json(["message"=>"success"],200);
 
         }else if($client){
 
@@ -91,7 +91,7 @@ class PusherController extends Controller
                 "message"=>$message
             ]);
 
-            return redirect()->back();
+            return response()->json(["message"=>"success"],200);
 
 
 

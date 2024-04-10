@@ -9,6 +9,7 @@ class ImgProducto extends Model
 {
     use HasFactory;
     protected $table="img_product";
+    protected $primaryKey="id_img_product";
 
     protected $fillable=[
         "id_img",

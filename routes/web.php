@@ -29,15 +29,16 @@ Route::get("/",function(){
 Route::middleware("authenticationUser")->group(function(){
     Route::get("/login/admin",[LoginController::class,"index"])->name("loginA");
     Route::post("/login/admin",[LoginController::class,"loginAdmin"])->name("loginA");
-    Route::get("/buscarproducto",[ClienteController::class,"viewfolio"])->name("buscarequipo");
-    Route::post("/buscarproducto",[ClienteController::class,"searchMantenimiento"])->name("buscarequipo");
+
 });
+Route::get("/buscarproducto",[ClienteController::class,"viewfolio"])->name("buscarequipo");
+Route::post("/buscarproducto",[ClienteController::class,"searchMantenimiento"])->name("buscarequipo");
 
 Route::post("/logout/cliente",[ClienteController::class,"salir"])->name("salircliente");
 
 Route::middleware("authclient")->group(function(){
- Route::get("/cliente/home",[ClienteController::class,"index"])->name("cliente");
- Route::get("/cliente/chat/{id}",[ClienteController::class,"viewChat"])->name("chatcliente");
+ Route::get("/cliente/home/{id}",[ClienteController::class,"index"])->name("cliente");
+
 
 });
 
@@ -45,7 +46,13 @@ Route::middleware("authallusers")->group(function(){
     Route::get("/allchats",[ChatController::class,"chat"])->name("allchats");
     Route::post("/broadcast",[PusherController::class,"broadcast"])->name("broadcast");
     Route::post("/receive",[PusherController::class,"receive"])->name("receive");
+    // Route::get("/chat/{id}",[PusherController::class,"index"])->name("chat");
+    Route::get("chat/{id}",[ClienteController::class,"viewChat"])->name("chatcliente");
+});
 
+Route::middleware("authalladmins")->group(function(){
+    Route::get('/updateMantenimiento/{id}',[MantenimientoController::class,'update'])->name('updateMantenimiento');
+    Route::middleware("authformupdate")->patch('/updateMantenimiento',[MantenimientoController::class,'updateMaintenance'])->name('updatemetho');
 });
 Route::post("/logout/admin",[LoginController::class,"logoutAdmin"])->name("logoutA");
 Route::middleware("authenticationSuperAdmin")->group(function(){
@@ -63,7 +70,7 @@ Route::middleware("authenticationSuperAdmin")->group(function(){
     Route::get("/searchmantenimiento",[HomeSuperAdminController::class,"search"])->name("searchMantenimiento");
     Route::get("/addmantenimiento",[HomeSuperAdminController::class,"mantenimentoview"])->name("addMantenimiento");
     Route::post("/addmantenimiento",[HomeSuperAdminController::class,"store"])->name("addMantenimiento");
-    Route::get("/chat/{id}",[PusherController::class,"index"])->name("chat");
+
 
 
 
@@ -77,7 +84,7 @@ Route::middleware("authenticationAdmin")->group(function(){
     Route::middleware("authformaddEquipo")->post("/equipo",[HomeAdminController::class,"store"])->name("newequipo");
     Route::get("/update/{idman}",[HomeAdminController::class,"update"])->name("update");
     Route::get("/equiposearch",[HomeAdminController::class,"search"])->name("searchequipo");
-    Route::get('/updateMantenimiento/{id}',[MantenimientoController::class,'update'])->name('updateMantenimiento');
+
 
 
 });

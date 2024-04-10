@@ -49,6 +49,7 @@ class HomeSuperAdminController extends Controller
             "username"=>$username,
             "password"=>bcrypt($password),
             "password_text"=>$password,
+            "completname"=>$name." ".$lastName." ".$motherLastName,
             "id_role"=>3
          ]);
          return redirect()->route("superadmin");
@@ -87,6 +88,7 @@ class HomeSuperAdminController extends Controller
         $admin->name=$name;
         $admin->last_name=$lastName;
         $admin->mother_last_name=$motherLastName;
+        $admin->completname=$name." ".$lastName." ".$motherLastName;
         $admin->username=$username;
         $admin->password=bcrypt($password);
         $admin->password_text=$password;
@@ -122,17 +124,17 @@ class HomeSuperAdminController extends Controller
         }
 
         if($all){
-            $mantenimientos=Maintenance::where("id_admin",$id)->orderBy("created_at","DESC")->paginate(20);
-        return view("admin.superadmin.tecnicoEquipos.index",[
-            "admin"=>$id,
-            "mantenimientos"=>$mantenimientos,
-            "totalpages"=>$mantenimientos->lastPage(),
-            "currentpage"=>$mantenimientos->currentPage(),
-            "isSearch"=>false
-        ]);
+            $mantenimientos=Maintenance::where("id_admin",$id)->where("is_finish",0)->orderBy("created_at","DESC")->paginate(20);
+            return view("admin.superadmin.tecnicoEquipos.index",[
+                "admin"=>$id,
+                "mantenimientos"=>$mantenimientos,
+                "totalpages"=>$mantenimientos->lastPage(),
+                "currentpage"=>$mantenimientos->currentPage(),
+                "isSearch"=>false
+            ]);
         }
 
-        $mantenimientos=Maintenance::where("id_admin",$id)->where("is_finish",0)->orderBy("created_at","DESC")->paginate(20);
+        $mantenimientos=Maintenance::where("id_admin",$id)->orderBy("created_at","DESC")->paginate(20);
         return view("admin.superadmin.tecnicoEquipos.index",[
             "admin"=>$id,
             "mantenimientos"=>$mantenimientos,
@@ -158,29 +160,23 @@ class HomeSuperAdminController extends Controller
             case "1":
                 // $cliente=Cliente::where("name","like","%".$input."%")->orWhere("last_name","like","%".$input."%")->orWhere("mother_last_name","like","%".$input."%")->get();
                 $mantenimientos=Maintenance::whereHas("cliente",function($query) use($input){
-                    $query->where("name","like","%".$input."%");
+                    $query->where("completname","like",$input."%");
                 })->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
 
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                return view("admin.normaladmin.search",compact("mantenimientos"));
                 break;
             case "2":
-                $mantenimientos=Maintenance::where("foliId","like","%".$input."%")->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                $mantenimientos=Maintenance::where("foliId","like",$input."%")->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
+                return view("admin.normaladmin.search",compact("mantenimientos"));
 
                 break;
             case "3":
 
 
                 $mantenimientos=Maintenance::whereHas("admin",function($query) use($input){
-                    $query->where("name","like","%".$input."%")->orWhere("last_name","like","%".$input."%")->orWhere("mother_last_name","like","%".$input."%");
+                    $query->where("completname","like",$input."%");
                 })->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                return view("admin.normaladmin.search",compact("mantenimientos"));
 
                 break;
         }
@@ -230,32 +226,26 @@ class HomeSuperAdminController extends Controller
         $option=$request->input("option");
         switch($option){
             case "1":
-            $mantenimientos = Maintenance::whereHas("admin", function($query) use($input) {
-                $query->where("name", "like", $input . "%");
+            $mantenimientos = Maintenance::whereHas("cliente", function($query) use($input) {
+                $query->where("completname", "like", $input."%");
 
             })->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-            return response()->json([
-                "result" => $mantenimientos
-            ]);
+            return view("admin.normaladmin.search",compact("mantenimientos"));
 
 
                 break;
             case "2":
-                $mantenimientos=Maintenance::where("foliId","like","%".$input."%")->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                $mantenimientos=Maintenance::where("foliId","like",$input."%")->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
+                return view("admin.normaladmin.search",compact("mantenimientos"));
 
                 break;
             case "3":
 
 
                 $mantenimientos=Maintenance::whereHas("admin",function($query) use($input){
-                    $query->where("name","like","%".$input."%")->orWhere("last_name","like","%".$input."%")->orWhere("mother_last_name","like","%".$input."%");
+                    $query->where("completname","like",$input."%");
                 })->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                return view("admin.normaladmin.search",compact("mantenimientos"));
 
                 break;
         }

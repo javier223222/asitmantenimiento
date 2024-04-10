@@ -21,6 +21,7 @@ class Admin extends Model
         "password",
         "password_text",
         "id_role",
+        "completname"
     ];
 
     public function role(): BelongsTo

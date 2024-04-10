@@ -44,7 +44,7 @@ const showall = document.getElementById("showall");
 
 
     const pintar= (data)=>{
-        data.forEach(element => {
+        data.map(element => {
            console.log(element)
            const imagen=element.product.image_prduct[0].img.url_public
            console.log(imagen)
@@ -76,6 +76,7 @@ const showall = document.getElementById("showall");
                 `
                 break;
            }
+
 
            searchsection.innerHTML+=`
 

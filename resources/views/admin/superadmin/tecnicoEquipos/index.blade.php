@@ -123,7 +123,8 @@
 
 
                   <div class="card-body">
-                    <a href={{route("chat",["id"=>$item->foliId])}}  class="btn btn-primary">Comentar</a>
+                    <a href={{route("chatcliente",["id"=>
+                        $item->foliId])}}  class="btn btn-primary">Comentar</a>
                     <a href={{route("updateMantenimiento",["id"=>$item->foliId])}}  class="btn btn-primary">Actualizar</a>
                   </div>
                 </div>

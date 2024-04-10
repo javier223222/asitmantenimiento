@@ -72,6 +72,8 @@ class Kernel extends HttpKernel
         "authformaddEquipo"=>\App\Http\Middleware\AuthFormAddEquipo::class,
         "authclient"=>\App\Http\Middleware\Authclient::class,
         "authallusers"=>\App\Http\Middleware\AutAllUsers::class,
+        "authalladmins"=>\App\Http\Middleware\AuthallAdmins::class,
+        "authformupdate"=>\App\Http\Middleware\AuthFormUpdate::class,
 
     ];
 }

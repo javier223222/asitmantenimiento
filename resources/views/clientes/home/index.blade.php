@@ -32,15 +32,19 @@
 
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{session("mantenimientocliente")->product->imagePrduct[0]->img->url_public}}" alt="Card image cap">
+                <div id="img">
+                    <img id="imgexits" class="card-img-top" src="{{$mantenimiento->product->imagePrduct[0]->img->url_public}}" alt="Card image cap">
+
+                </div>
+
                 <div class="card-body">
-                  <h5 class="card-title">Numero orden:{{session("mantenimientocliente")->foliId}}</h5>
-                  <h6 class="card-subtitle mb-2 text-body-secondary">Creado: {{date("Y-m-d",strtotime(date(session("mantenimientocliente")->created_at)))}}</h6>
+                  <h5 class="card-title">Numero orden:{{$mantenimiento->foliId}}</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Creado: {{date("Y-m-d",strtotime(date($mantenimiento->created_at)))}}</h6>
+                <input type="text" id="folio" value="{{$mantenimiento->foliId}}" style="visibility: hidden">
+                  <div id="showinitial" class="row">
+                    <p class="card-text">Estatus:{{$mantenimiento->status}}</p>
 
-                  <div class="row">
-                    <p class="card-text">Estatus:{{session("mantenimientocliente")->status}}</p>
-
-                    @switch(session("mantenimientocliente")->status)
+                    @switch($mantenimiento->status)
                         @case("En fila")
                         <span class="material-symbols-outlined">
                             hourglass_empty
@@ -68,17 +72,20 @@
 
                     @endswitch
                   </div>
+                  <div style="visibility: hidden" class="row" id="showeventtype">
+
+                  </div>
                   <ul class="list-group list-group-flush">
 
-                    <li class="list-group-item">Tecnico:{{session("mantenimientocliente")->admin->name}}
-                        {{session("mantenimientocliente")->admin->last_name}} {{session("mantenimientocliente")->admin->mother_last_name}}</li>
+                    <li class="list-group-item">Tecnico:{{$mantenimiento->admin->name}}
+                        {{$mantenimiento->admin->last_name}} {{$mantenimiento->admin->mother_last_name}}</li>
                     </li>
                   </ul>
 
 
 
                   <div class="card-body">
-                    <a href="{{route("chatcliente",["id"=>session("mantenimientocliente")->foliId])}}"  class="btn btn-primary">Comentarios</a>
+                    <a href="{{route("chatcliente",["id"=>$mantenimiento->foliId])}}"  class="btn btn-primary">Comentarios</a>
 
                   </div>
                 </div>
@@ -88,6 +95,11 @@
 
 
     </div>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    @vite('resources/js/status.js')
+    <script>
 
+
+    </script>
 </body>
 </html>

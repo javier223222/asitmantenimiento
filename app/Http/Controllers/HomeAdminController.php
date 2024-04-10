@@ -28,7 +28,7 @@ class HomeAdminController extends Controller
        }
        if($all){
         $admin= Session::get("admin");
-        $allMantenimientos=Maintenance::where("id_admin",$admin->id)->orderBy("created_at","DESC")->paginate(20);
+        $allMantenimientos=Maintenance::where("id_admin",$admin->id)->where("is_finish",0)->orderBy("created_at","DESC")->paginate(20);
          return view("admin.normaladmin.index",[
              "admin"=>$admin,
              "mantenimientos"=>$allMantenimientos,
@@ -39,7 +39,7 @@ class HomeAdminController extends Controller
        }
 
        $admin= Session::get("admin");
-       $allMantenimientos=Maintenance::where("id_admin",$admin->id)->where("is_finish",0)->orderBy("created_at","DESC")->paginate(20);
+       $allMantenimientos=Maintenance::where("id_admin",$admin->id)->orderBy("created_at","DESC")->paginate(20);
         return view("admin.normaladmin.index",[
             "admin"=>$admin,
             "mantenimientos"=>$allMantenimientos,
@@ -64,29 +64,24 @@ class HomeAdminController extends Controller
             case "1":
                 // $cliente=Cliente::where("name","like","%".$input."%")->orWhere("last_name","like","%".$input."%")->orWhere("mother_last_name","like","%".$input."%")->get();
                 $mantenimientos=Maintenance::whereHas("cliente",function($query) use($input){
-                    $query->where("name","like","%".$input."%")->orWhere("last_name","like","%".$input."%")->orWhere("mother_last_name","like","%".$input."%");
+                    $query->where("completname","like",$input."%");
                 })->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
 
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                return view("admin.normaladmin.search",compact("mantenimientos"));
+
                 break;
             case "2":
-                $mantenimientos=Maintenance::where("foliId","like","%".$input."%")->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                $mantenimientos=Maintenance::where("foliId","like",$input."%")->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
+                return view("admin.normaladmin.search",compact("mantenimientos"));
 
                 break;
             case "3":
 
 
                 $mantenimientos=Maintenance::whereHas("admin",function($query) use($input){
-                    $query->where("name","like","%".$input."%")->orWhere("last_name","like","%".$input."%")->orWhere("mother_last_name","like","%".$input."%");
+                    $query->where("completname","like",$input."%");
                 })->where("id_admin",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
-                return response()->json([
-                    "result"=>$mantenimientos
-                ]);
+                return view("admin.normaladmin.search",compact("mantenimientos"));
 
                 break;
         }

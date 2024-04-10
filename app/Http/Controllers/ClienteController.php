@@ -17,6 +17,7 @@ class ClienteController extends Controller
             "telefono"=>$phone,
             "last_name"=>$last_name,
             "mother_last_name"=>$mother_last_name,
+            "completname"=>$name." ".$last_name." ".$mother_last_name
         ]);
         return $cliente;
 
@@ -26,8 +27,11 @@ class ClienteController extends Controller
         $cliente = Cliente::where('name',$search);
         return $cliente;
     }
-    public function index(){
-      return view('clientes.home.index');
+    public function index($id){
+     $mantenimientos=Maintenance::where("foliId",$id)->first();
+
+
+      return view('clientes.home.index',['mantenimiento'=>$mantenimientos]);
     }
     public function viewfolio()
     {
@@ -46,8 +50,10 @@ class ClienteController extends Controller
             $cliente=$mantenimientos->cliente;
 
             Session::put("client",$cliente);
-            Session::put("mantenimientocliente",$mantenimientos);
-            return redirect()->route("cliente");
+
+           return redirect()->route("cliente",[
+                "id"=>$mantenimientos->foliId
+           ]);
         }
 
         Session::flash("errosearch","numero de folio o numero incorrecto");
@@ -65,5 +71,5 @@ class ClienteController extends Controller
     public function viewChat($id){
         return view('clientes.chat.index',["id"=>$id]);
     }
-    
+
 }
