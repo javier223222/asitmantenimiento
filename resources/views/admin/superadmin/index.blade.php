@@ -34,6 +34,13 @@
     <a href={{route("addTecnico")}} class="btn btn-primary">Agregar tecnico</a>
 
 </div>
+<div>
+    <a href={{route("addMantenimiento")}} class="btn btn-primary">Agregar Equipo</a>
+
+</div>
+<div>
+    <a href={{route("allEquiposMantenimiento")}} class="btn btn-primary">Ver tos los equipos en mantenimiento</a>
+</div>
 @if ($isSearch)
 <div>
     <a href={{route("superadmin")}} class="btn btn-primary">Ver a todos los tecnicos</a>
@@ -64,6 +71,9 @@
                 <button class="btn btn-danger">Eliminar<i class="bi bi-trash"></i></button>
 
               </form>
+
+              <a href={{route("mantenimientoTecnicoforspecific",["id"=>$item->id])}} class="btn btn-primary">Ver equipos en mantenimiento</a>
+
 
 
               <a href={{route("updateTecnico",["id"=>$item->id])}} class="btn btn-primary">Actualizar</a>

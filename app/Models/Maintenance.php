@@ -10,12 +10,33 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Maintenance extends Model
 {
 
-    use HasUuids;
+
     protected $table="maintenance";
     protected $keyType = 'string';
-    public function producto():HasOne
-    {
-        return $this->hasOne(Productmai::class);
+    protected $primaryKey = 'foliId';
+
+
+    protected $fillable=[
+        "foliId",
+        "id_productMai",
+        "id_cliente",
+        "status",
+        "is_finish",
+        "descripcionproblema",
+        "id_admin",
+
+    ];
+
+    public function cliente(){
+        return $this->belongsTo(Cliente::class,"id_cliente","id_cliente");
     }
-    
+
+    public function product(){
+        return $this->belongsTo(Productmai::class,"id_productMai","id_productMai");
+    }
+    public function admin(){
+        return $this->belongsTo(Admin::class,"id_admin","id");
+    }
+
+
 }

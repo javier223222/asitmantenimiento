@@ -9,4 +9,9 @@ class Img extends Model
 {
     use HasFactory;
     protected $table="img";
+    protected $fillable=[
+        "url_imag",
+        "url_public"
+    ];
+ 
 }

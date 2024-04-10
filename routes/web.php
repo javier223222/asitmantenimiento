@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\HomeSuperAdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\PusherController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestWebsocketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +21,32 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// las rutas estan aqui
 Route::get("/",function(){
     echo "Pagina en contruccion";
 })->name("principal");
 Route::middleware("authenticationUser")->group(function(){
     Route::get("/login/admin",[LoginController::class,"index"])->name("loginA");
     Route::post("/login/admin",[LoginController::class,"loginAdmin"])->name("loginA");
+    Route::get("/buscarproducto",[ClienteController::class,"viewfolio"])->name("buscarequipo");
+    Route::post("/buscarproducto",[ClienteController::class,"searchMantenimiento"])->name("buscarequipo");
 });
 
+Route::post("/logout/cliente",[ClienteController::class,"salir"])->name("salircliente");
+
+Route::middleware("authclient")->group(function(){
+ Route::get("/cliente/home",[ClienteController::class,"index"])->name("cliente");
+ Route::get("/cliente/chat/{id}",[ClienteController::class,"viewChat"])->name("chatcliente");
+
+});
+
+Route::middleware("authallusers")->group(function(){
+    Route::get("/allchats",[ChatController::class,"chat"])->name("allchats");
+    Route::post("/broadcast",[PusherController::class,"broadcast"])->name("broadcast");
+    Route::post("/receive",[PusherController::class,"receive"])->name("receive");
+
+});
 Route::post("/logout/admin",[LoginController::class,"logoutAdmin"])->name("logoutA");
 Route::middleware("authenticationSuperAdmin")->group(function(){
     Route::get("/suadmin",[HomeSuperAdminController::class,"index"])->name("superadmin");
@@ -32,11 +56,41 @@ Route::middleware("authenticationSuperAdmin")->group(function(){
     Route::get("/updateTecnico/{id}",[HomeSuperAdminController::class,"updateTecnico"])->name("updateTecnico");
     Route::middleware("authformupdatetec")->patch("/updateTecnico/{id}",[HomeSuperAdminController::class,"actualizarTecnico"])->name("actualizarTecnico");
     Route::post("/searchtecnico",[HomeSuperAdminController::class,"searchTecnico"])->name("searchTecnico");
+    Route::get("/maintancetecnico/{id}/{finish?}/{all?}",[HomeSuperAdminController::class,"showallTecnicoManteince"])->name("mantenimientoTecnicoforspecific");
+    Route::get("/searchmantenimientotecnico",[HomeSuperAdminController::class,"serachForSpecificTecnico"])->name("searchMantenimientoTecnico");
+    Route::get("/mantenimientotecnico/{id}",[HomeSuperAdminController::class,"mantenimientoTecnico"])->name("mantenimientoTecnico");
+    Route::get("/allEquiposMantenimiento/{finish?}/{all?}",[HomeSuperAdminController::class,"allEquiposMantenimiento"])->name("allEquiposMantenimiento");
+    Route::get("/searchmantenimiento",[HomeSuperAdminController::class,"search"])->name("searchMantenimiento");
+    Route::get("/addmantenimiento",[HomeSuperAdminController::class,"mantenimentoview"])->name("addMantenimiento");
+    Route::post("/addmantenimiento",[HomeSuperAdminController::class,"store"])->name("addMantenimiento");
+    Route::get("/chat/{id}",[PusherController::class,"index"])->name("chat");
+
+
+
 });
 
+
+
 Route::middleware("authenticationAdmin")->group(function(){
-    Route::get("/admin",[HomeAdminController::class,"index"])->name("admin");
+    Route::get("/admin/{finish?}/{all?}",[HomeAdminController::class,"index"])->name("admin");
+    Route::get("/equipo",[HomeAdminController::class,"equipo"])->name("equipo");
+    Route::middleware("authformaddEquipo")->post("/equipo",[HomeAdminController::class,"store"])->name("newequipo");
+    Route::get("/update/{idman}",[HomeAdminController::class,"update"])->name("update");
+    Route::get("/equiposearch",[HomeAdminController::class,"search"])->name("searchequipo");
+    Route::get('/updateMantenimiento/{id}',[MantenimientoController::class,'update'])->name('updateMantenimiento');
+
+
 });
+
+
+// Route::get("/test",[TestWebsocketController::class,"test"])->name("test");
+// Route::get("/viewtes",function(){
+//   return view("test");
+// });
+
+// Route::get('test',[TestController::class,'test']);
+// Route::view('bbb','checkingWebsocket');
+
 
 
 

@@ -10,12 +10,25 @@ class Productmai extends Model
 {
     use HasFactory;
     protected $table="productmai";
-    public function categories():BelongsToMany
-    {
-        return $this->belongsToMany(Category::class);
+    protected $fillable=[
+        "name",
+        "id_category",
+        "id_brand",
+        "descripcion",
+
+    ];
+
+    public function category(){
+        return $this->belongsTo(Category::class,"id_category","id_category");
+
     }
-    public function brands():BelongsToMany
-    {
-        return $this->belongsToMany(Brand::class);
+    public function brand(){
+        return $this->belongsTo(Brand::class,"id_brand","id_brand");
     }
+
+    public function imagePrduct(){
+        return $this->hasMany(ImgProducto::class,"id_productMai","id_productMai");
+    }
+
+
 }

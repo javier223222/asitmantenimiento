@@ -22,6 +22,9 @@ class AuthUserLoggend
         if(Session::has("admin")){
             return redirect()->route("admin");
         }
+        if(Session::has("client")){
+            return redirect()->route("cliente");
+        }
         return $next($request);
     }
 }
