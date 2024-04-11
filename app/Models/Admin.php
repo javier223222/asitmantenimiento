@@ -20,13 +20,20 @@ class Admin extends Model
         "mother_last_name",
         "password",
         "password_text",
-        "id_role"
+        "id_role",
+        "completname"
     ];
 
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class, 'id_role', 'id_role');
     }
+
+    public function mantenimientos(){
+        return $this->hasMany(Maintenance::class,"id_admin","id");
+    }
+
+
 
 
 

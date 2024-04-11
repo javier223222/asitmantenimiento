@@ -10,8 +10,19 @@ class Cliente extends Model
 {
     use HasFactory;
     protected $table="cliente";
-    public function getMantenimientos():HasMany
-    {
-        return $this->hasMany(Maintenance::class);
+    protected $primaryKey="id_cliente";
+    protected $fillable=[
+        "name",
+        "last_name",
+        "mother_last_name",
+        "email",
+        "telefono",
+        "completname"
+
+    ];
+
+    public function equiposenmantenimiento (){
+        return $this ->hasMany(Maintenance::class,"id_cliente","id_cliente");
     }
+
 }

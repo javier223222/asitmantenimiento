@@ -15,12 +15,13 @@ class AuthAdmin
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
+{
 
         if(Session::has("admin")){
             return $next($request);
         }else if(Session::has("superAdmin")){
             return redirect()->route("superadmin");
         }
+        return redirect()->route("loginA");
     }
 }
