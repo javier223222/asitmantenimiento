@@ -70,9 +70,10 @@ Route::middleware("authenticationSuperAdmin")->group(function(){
     Route::get("/searchmantenimiento",[HomeSuperAdminController::class,"search"])->name("searchMantenimiento");
     Route::get("/addmantenimiento",[HomeSuperAdminController::class,"mantenimentoview"])->name("addMantenimiento");
     Route::post("/addmantenimiento",[HomeSuperAdminController::class,"store"])->name("addMantenimiento");
-
-
-
+    Route::get("/allclientes",[HomeSuperAdminController::class,"allclientesview"])->name("allClientes");
+    Route::get("/searchcliente",[HomeSuperAdminController::class,"searchclientes"])->name("searchcliente");
+    Route::get("/allclientesmantenimientos/{id}/{finish?}/{all?}",[MantenimientoController::class,"allmantenimientos"])->name("allmantenimientosclientes");
+    Route::get("/searchmantenimientocliente",[MantenimientoController::class,"searchspecificcliente"])->name("searchmantenimienofcliente");
 
 });
 

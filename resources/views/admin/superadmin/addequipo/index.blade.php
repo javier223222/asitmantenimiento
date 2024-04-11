@@ -78,7 +78,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Tecnico a cargo:</label>
+
             <div class="col-sm-10">
                 <select name="tecnico" id="inputState" class="form-control" required>
                     <option value="0" selected>Elige el tecnico</option>
@@ -90,41 +90,65 @@
                   </select>
             </div>
           </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Nombre del cliente:</label>
+
+          <div  class="form-group row">
+            <label  class="col-sm-2 col-form-label">Cliente:</label>
             <div class="col-sm-10">
-              <input placeholder="Ingrese el nombre del cliente"
-               name="nombrecliente" style="background-color: white" type="text"  class="form-control" required>
+                <select name="tipoaddcliente" id="tipoaddcliente" class="form-control" required>
+                    <option value="0" selected>Elige una opcion</option>
+                    <option value="1" >Elegir un cliente existente</option>
+                    <option value="2">Agregar uno nuevo</option>
+
+                  </select>
             </div>
+
+
           </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Apellido Paterno del cliente:</label>
-            <div class="col-sm-10">
-              <input placeholder="Ingrese el Apellido paterno "
-               name="apellidopcli" style="background-color: white" type="text"  class="form-control" required>
-            </div>
+
+          <div cla>
+
           </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Apellido Materno del cliente:</label>
-            <div class="col-sm-10">
-              <input placeholder="Ingrese el Apellido materno "
-               name="apellidomcli" style="background-color: white" type="text"  class="form-control" required>
-            </div>
+          <div id="showform" style="visibility: hidden">
+            <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Nombre del cliente:</label>
+                <div class="col-sm-10">
+                  <input placeholder="Ingrese el nombre del cliente"
+                   name="nombrecliente" style="background-color: white" type="text"  class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Apellido Paterno del cliente:</label>
+                <div class="col-sm-10">
+                  <input placeholder="Ingrese el Apellido paterno "
+                   name="apellidopcli" style="background-color: white" type="text"  class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Apellido Materno del cliente:</label>
+                <div class="col-sm-10">
+                  <input placeholder="Ingrese el Apellido materno "
+                   name="apellidomcli" style="background-color: white" type="text"  class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Correo electronico del cliente:</label>
+                <div class="col-sm-10">
+                  <input placeholder="Ingrese el correo electronico del cliente "
+                  name="emailclien" style="background-color: white" type="email"  class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Numero de telefono del cliente:</label>
+                <div class="col-sm-10">
+                  <input placeholder="Ingrese el numero de telefono del cliente "
+                   name="telefonoclien" style="background-color: white" type="text"  class="form-control" required>
+                </div>
+              </div>
+
           </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Correo electronico del cliente:</label>
-            <div class="col-sm-10">
-              <input placeholder="Ingrese el correo electronico del cliente "
-              name="emailclien" style="background-color: white" type="email"  class="form-control" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Numero de telefono del cliente:</label>
-            <div class="col-sm-10">
-              <input placeholder="Ingrese el numero de telefono del cliente "
-               name="telefonoclien" style="background-color: white" type="text"  class="form-control" required>
-            </div>
-          </div>
+
+
+
 
           <button  class="btn btn-light">Agregar</button>
 
@@ -132,7 +156,8 @@
       @if (session("erroradprud"))
       <p style="color:red">{{session("erroradprud")}}</p>
       @endif
-
+  @vite('resources/js/optionsaddcliente.js')
+  <script></script>
 
 </body>
 </html>

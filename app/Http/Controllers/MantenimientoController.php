@@ -93,6 +93,70 @@ class MantenimientoController extends Controller
 
     }
 
+    function searchspecificcliente(Request $request){
+        $input=mb_convert_case($request->input("search"),MB_CASE_LOWER,"UTF-8");
+        $option=$request->input("option");
+        $id=$request->input("id");
+
+        switch($option){
+
+            case "2":
+                $mantenimientos=Maintenance::where("foliId","like",$input."%")->where("id_cliente",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
+                return view("admin.normaladmin.search",compact("mantenimientos"));
+
+                break;
+            case "3":
+
+
+                $mantenimientos=Maintenance::whereHas("admin",function($query) use($input){
+                    $query->where("completname","like",$input."%");
+                })->where("id_cliente",$id)->with("cliente")->with("admin")->with("product.imagePrduct.img")->get();
+                return view("admin.normaladmin.search",compact("mantenimientos"));
+
+                break;
+        }
+
+
+    }
+    function allmantenimientos($id,$finish=null,$all=null){
+
+        if($finish){
+            $mantenimientos=Maintenance::where("id_cliente",$id)->where("is_finish",1)->paginate(20);
+            return view('admin.superadmin.allclientes.allclientemantenimientos.index',
+            [
+                "id"=>$id,
+                "mantenimientos"=>$mantenimientos->items(),
+               "totalpages"=>$mantenimientos->lastPage(),
+                "currentpage"=>$mantenimientos->currentPage(),
+                "isSearch"=>false
+        ]);
+    }
+    if($all){
+        $mantenimientos=Maintenance::where("id_cliente",$id)->where("is_finish",0)->paginate(20);
+        return view('admin.superadmin.allclientes.allclientemantenimientos.index',
+        [
+            "id"=>$id,
+            "mantenimientos"=>$mantenimientos->items(),
+           "totalpages"=>$mantenimientos->lastPage(),
+            "currentpage"=>$mantenimientos->currentPage(),
+            "isSearch"=>false
+    ]);
+    }
+
+        $mantenimientos=Maintenance::where("id_cliente",$id)->paginate(20);
+        return view('admin.superadmin.allclientes.allclientemantenimientos.index',
+        [
+            "id"=>$id,
+            "mantenimientos"=>$mantenimientos->items(),
+           "totalpages"=>$mantenimientos->lastPage(),
+            "currentpage"=>$mantenimientos->currentPage(),
+            "isSearch"=>false
+    ]);
+    }
+
+
+
+
 
 
 

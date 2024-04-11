@@ -41,6 +41,9 @@
 <div>
     <a href={{route("allEquiposMantenimiento")}} class="btn btn-primary">Ver tos los equipos en mantenimiento</a>
 </div>
+<div>
+    <a href={{route("allClientes")}} class="btn btn-primary">Ver todos los clientes</a>
+</div>
 @if ($isSearch)
 <div>
     <a href={{route("superadmin")}} class="btn btn-primary">Ver a todos los tecnicos</a>

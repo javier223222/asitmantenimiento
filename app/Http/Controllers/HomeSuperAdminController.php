@@ -219,6 +219,23 @@ class HomeSuperAdminController extends Controller
              "isSearch"=>false
          ]);
     }
+    public function allclientesview(){
+        $clientes=Cliente::orderBy("created_at","DESC")->paginate(20);
+        return view("admin.superadmin.allclientes.index",[
+            "clientes"=>$clientes->items(),
+            "totalpages"=>$clientes->lastPage(),
+            "currentpage"=>$clientes->currentPage(),
+            "isSearch"=>false
+        ]);
+    }
+
+    public function searchclientes(Request $request){
+        $search=$request->input("search");
+        $clientes=Cliente::where("completname", "like", $search."%")->get();
+         return view("admin.superadmin.allclientes.search.index",compact("clientes"));
+    }
+
+
 
 
     public function search(Request $request){
