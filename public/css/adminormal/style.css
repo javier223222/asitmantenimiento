@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
+
+body{
+    background-color: #0C2D57;
+    font-family: Inria sans;
+}
+
+.title{
+    color: #E1E1E5;
+}
+
+.btn_blue{
+    background-color: #0C2D57;
+    color: #E1E1E5;
+
+}
+.btn_blue:hover, .btn_blue:focus {
+    background-color: #0c2a53;
+    color: #E1E1E5;
+}
+.contendor-botones{
+    display: flex;
+    justify-content: space-around   ;
+}
+.btn-btn-sm-1{
+background-color: #E1E1E5;
+color: #0C2D57;
+border: none;
+border-radius: 10px;
+height: 35px;
+}
+.btn-btn-sm-2{
+    background-color: #1F1F29;
+    color: #E1E1E5;
+    border: none;
+    border-radius: 10px;
+    height: 35px;
+}
+
