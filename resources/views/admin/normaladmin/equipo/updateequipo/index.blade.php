@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href={{ asset('css/admin/tecnico/addequipo/style.css') }}>
+    <link rel="stylesheet" href={{ asset('css/admin/tecnico/updatequipo/style.css') }}>
     <title>Actualizar equipo</title>
-    <style>
-        body{
-            color: #f1f1f1;
-        }
-    </style>
 </head>
 <body>
     @if (session('errorupdate'))
@@ -20,15 +15,22 @@
         </div>
 
     @endif
+    <h1 class="titulo">Foto del equipo</h1>
+    <div class="contenedor">
   <form action="{{route("updatemetho")}}" method="POST"  enctype="multipart/form-data">
     @method("PATCH")
     @csrf
 
-    <h1>foto del equipo</h1>
-  <label for="file">
-  <h1>cambiar</h1>
-  </label>
-    <input type="text" name="id" value="{{$mantenimiento->foliId}}" style="visibility: hidden">
+    <label for="file" class="cambiar" >   
+    <h1>Cambiar</h1>
+    </label>
+ 
+   
+  
+
+
+
+  <input type="text" name="id" value="{{$mantenimiento->foliId}}" style="visibility: hidden">
   <input name="newimage" type="file" id="file">
   <div class="form-check">
     <input onclick="calc();" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="En fila" checked>
@@ -55,19 +57,20 @@
     </label>
 
 
-  </div>
+  
   <input placeholder="ingrese otro estatus" style="visibility: hidden" type="text" name="otrostatus" id="otrostatus" >
 
 
 
 
+<div class="con-btn">
+<button type="submit" class="btn boton-Ac">Actualizar</button>
 
-
-  <button type="submit">Actualizar</button>
-
+</div>
+ 
 
   </form>
-
+  </div>
 
 </body>
 @vite("resources/js/updateequipo.js")

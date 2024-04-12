@@ -18,36 +18,45 @@
     <title>Tecnico</title>
 </head>
 <body>
-    <nav class="navbar navcoloradmin">
-        <a class="navbar-brand" href="#">
-          <img src={{asset("images/asitlogo.jpg")}} width="30" height="30" alt="">
-        </a>
-        <form class="form-inline">
-
-            <button class="btn btn-light   my-2 my-sm-0" >
-              <a href={{route("equipo")}}>Agregar equipo</a>
+<nav style="background-color: #1F1F29" class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="/images/asit.png" alt="ASIT" width="90" height="50">
+      </a>
+      <div class="mx-auto">
+        <h1 class="navbar-text title">Técnicos y equipos</h1>
+      </div>
+      <div class="d-flex gap-3">
+        <div>
+        <button class="btn boton-a" >
+              <a href={{route("equipo")}} class="color-boton">Agregar equipo</a>
             </button>
-          </form>
-        <form class="form-inline"  action="{{ route('logoutA') }}" method="POST">
-           @csrf
-            <button class="btn botonsal   my-2 my-sm-0" type="submit">Salir</button>
-          </form>
-
-      </nav>
+        </div>
+        <form action="{{ route('logoutA') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn_blue" style="margin">SALIR</button>
+        </form>
+      </div>
+    </div>
+  </nav>
       <div class="form-group">
-        <label for="sel1" style="color: white">Buscar por:</label>
+        <label for="sel1" style="color: white" >Buscar por:</label>
+        <div class="barra-determinada">
         <select  class="form-control" name="selectsearch" id="optionsearch">
           <option value="1" >Por cliente</option>
           <option value="2">Por id</option>
-
-
-
         </select>
+        <div class="form-buscar">
         <input type="search" id="searchinput" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        </div>
+        </div>
       </div>
+      <div class="contenedor-botones-busqueda">
       <a href={{route("admin")}} class="btn btn-primary">Ver todos los equipos</a>
         <a href={{route("admin",["finish"=>1,"all"=>0])}} class="btn btn-primary">Ver los equipos terminados</a>
         <a href={{route("admin",["finish"=>0,"all"=>1])}} class="btn btn-primary">Ver los equipos en proceso</a>
+      </div>
+     
 
       <div id="showsearch" class="row notshow">
 
@@ -69,8 +78,9 @@
 
     @else
         @foreach ($mantenimientos as $item)
+        <div class="carta-m">
         <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 16rem; height:48vw;">
                 <img class="card-img-top" src="{{$item->product->imagePrduct[0]->img->url_public}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">ID:{{$item->foliId}}</h5>
@@ -126,7 +136,7 @@
               </div>
 
         </div>
-
+        </div>
         @endforeach
 
         @endif
