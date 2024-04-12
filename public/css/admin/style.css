@@ -32,12 +32,14 @@ body{
   .formulario{
     margin-top: 150px;
   }
-  
-  .campo{
+  .co-1{
     margin-bottom: 10px;
-    width: 100%;
-    padding: 1px;
-    border: none;
+  }
+  .campo{
+    border-radius: 7px;
+    border-color: white;
+    width: 25vw;
+    height: 1.5vw;
  
   }
   

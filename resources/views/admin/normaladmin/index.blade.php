@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +77,7 @@
 
     @else
         @foreach ($mantenimientos as $item)
-        <div class="carta-m">
+
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card" style="width: 16rem; height:48vw;">
                 <img class="card-img-top" src="{{$item->product->imagePrduct[0]->img->url_public}}" alt="Card image cap">
@@ -136,7 +135,7 @@
               </div>
 
         </div>
-        </div>
+        
         @endforeach
 
         @endif

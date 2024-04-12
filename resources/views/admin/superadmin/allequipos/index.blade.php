@@ -14,43 +14,52 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <link rel="stylesheet" href={{ asset('css/admin/tecnico/style.css') }}>
+    <link rel="stylesheet" href={{ asset('css/admin/tecnico/allequipos/style.css') }}>
     <title>Equipos atendidos por el tecnico</title>
 </head>
 <body>
-    <nav class="navbar navcoloradmin">
-        <a class="navbar-brand" href={{route("superadmin")}}>
-          <img src={{asset("images/asitlogo.jpg")}} width="30" height="30" alt="">
+      <nav style="background-color: #1F1F29" class="navbar navbar-expand-lg">
+    <div class="container">
+    <a class="navbar-brand" href={{route("superadmin")}}>
+          <img src={{asset("images/asit.png")}} width="80" height="40" alt="">
         </a>
-        <form class="form-inline">
-
-            <button class="btn btn-light   my-2 my-sm-0" >
-              <a href={{route("equipo")}}>Agregar equipo</a>
+      <div class="mx-auto">
+        <h1 class="navbar-text title">Todos los equipos</h1>
+      </div>
+      <div class="d-flex gap-3">
+        <div>
+        <button class="btn boton-a" >
+              <a href={{route("equipo")}} class="color-boton">Agregar equipo</a>
             </button>
-          </form>
-        <form class="form-inline"  action="{{ route('logoutA') }}" method="POST">
-           @csrf
-            <button class="btn botonsal   my-2 my-sm-0" type="submit">Salir</button>
-          </form>
+        </div>
+        <form action="{{ route('logoutA') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn_blue" style="margin">SALIR</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 
-      </nav>
       <div class="form-group">
         <label for="sel1" style="color: white">Buscar por:</label>
+        <div class="barra-determinada">
         <select  class="form-control" name="selectsearch" id="optionsearch">
           <option value="1" >Por cliente</option>
           <option value="2">Por id</option>
           <option value="3">Por tecnico</option>
-
-
         </select>
+        <div class="form-buscar">
         <input type="search" id="searchinput" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+       </div> 
+      </div>
       </div>
 
       <div id="noresult">
-
+      <div class="contenedor-botones-busqueda">
         <a href={{route("allEquiposMantenimiento")}} class="btn btn-primary">Ver todos los equipos</a>
         <a href={{route("allEquiposMantenimiento",["finish"=>1,"all"=>0])}} class="btn btn-primary">Ver los equipos terminados</a>
         <a href={{route("allEquiposMantenimiento",["finish"=>0,"all"=>1])}} class="btn btn-primary">Ver los equipos en proceso</a>
+        </div>
     </div>
 
       <div id="showsearch" class="row notshow">
@@ -73,8 +82,9 @@
 
     @else
         @foreach ($mantenimientos as $item)
+       
         <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 16rem; height:48vw;">
                 <img class="card-img-top" src="{{$item->product->imagePrduct[0]->img->url_public}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">ID:{{$item->foliId}}</h5>
@@ -131,6 +141,7 @@
               </div>
 
         </div>
+      
 
         @endforeach
         @endif

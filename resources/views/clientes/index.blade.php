@@ -25,10 +25,13 @@
             <h2>Mantenimiento seguro</h2>
             <h1>EMPEZAR SEGUIMIENTO</h1>
             </div>
-            <label>Orden de servicio:</label>
+            <div class="co-1">
             <input placeholder="ingrese el folio" type="text" name="folio" id="serial" class="campo">
-            <label>Número de teléfono:</label>
-            <input placeholder="ingrese el numero" type="text" name="numero" class="campo">
+            </div>
+           <div class="co-1">
+           <input placeholder="ingrese el numero" type="text" name="numero" class="campo">
+           </div>
+            
             <button class="boton">Buscar</button>
         </form>
 
