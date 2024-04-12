@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navcoloradmin">
         <a class="navbar-brand" href="#">
-          <img src={{asset("images/asitlogo.jpg")}} width="30" height="30" alt="">
+          <img src={{asset("images/asitlogo.jpg")}} width="90" height="50" alt="">
         </a>
         <form class="form-inline">
 

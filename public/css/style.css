@@ -1,4 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
 body{
     background-color: #0C2D57;
     color: white;
+    font-family: Inria sans;
+    margin: 0;
+    padding: 0;
+}
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+  .primero {
+    width: 50%;
+    background-color:#1F1F29;
+    display: flex;
+    justify-content: center;
+    
+  }
+  .logotipo {
+    margin-top: 300px;
+    width: 360px;
+    height: 180px;
+  }
+  .segundo {
+    width: 50%;
+    background-color:#0C2D57;
+    display: flex;
+    justify-content: center;
+  }
+  .formulario {
+    margin-top: 150px;
+  }
+  
+  .campo {
+    border-radius: 7px;
+    border-color: white;
+    width: 25vw;
+    height: 2.5vw;
+    margin-bottom: 10px;
+  }
+  
+  .boton {
+    margin-top: 10px;
+    width: 20%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor:pointer;
 }
