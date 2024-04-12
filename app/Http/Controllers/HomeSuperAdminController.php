@@ -274,14 +274,18 @@ class HomeSuperAdminController extends Controller
 
     public function mantenimentoview(){
         $tecnicos=Admin::where("id_role",3)->get();
+        $clientes=Cliente::all();
         return view("admin.superadmin.addequipo.index",[
-            "tecnicos"=>$tecnicos
+            "tecnicos"=>$tecnicos,
+            "clientes"=>$clientes
         ]);
     }
 
     public function store(Request $request){
         $inputimg=$request->file("fileproducto");
         $folioproducto=$request->input("folioproducto");
+        $tipoaddcliente=$request->input("tipoaddcliente");
+        $clienteselected=$request->input("clienteselected");
         $tecnicocargo=$request->input("tecnico");
         $clunimg=new UpdateImgController();
         $obj=$clunimg->updateImg($inputimg);
@@ -315,7 +319,46 @@ class HomeSuperAdminController extends Controller
             $newbrand=$brandcontroller->addBrand($name_brandLower);
             $idproducto=$productocontroller->AddProducto($nameequipo,$categoria,$newbrand->id,$descripcionequi);
         }
-        $findclient=Cliente::where("name",$nameclient_lower)->where("last_name",$apellidopcli_lower)->where("mother_last_name",$apellidomcli_lower)->first();
+
+
+        if($tipoaddcliente=="1"){
+
+            $image_id=Img::create([
+                "url_imag"=>$obj["public_id"],
+                "url_public"=>$obj["url"],
+            ]);
+            $imageproduct=ImgProducto::create([
+                "id_productMai"=>$idproducto->id,
+                "id_img"=>$image_id->id_img,
+            ]);
+
+            if($tecnicocargo=="-1"){
+                $mentenimineto=Maintenance::create([
+                    "foliId"=>$folioproducto,
+                    "id_productMai"=>$idproducto->id,
+                    "id_cliente"=>$clienteselected,
+                    "status"=>"En fila",
+                    "is_finish"=>0,
+                    "descripcionproblema"=>$descripcionproblema,
+                    "id_admin"=>$admindata->id,
+
+                ]);
+            }else{
+                $mentenimineto=Maintenance::create([
+                    "foliId"=>$folioproducto,
+                    "id_productMai"=>$idproducto->id,
+                    "id_cliente"=>$clienteselected,
+                    "status"=>"En fila",
+                    "is_finish"=>0,
+                    "descripcionproblema"=>$descripcionproblema,
+                    "id_admin"=>$tecnicocargo,
+
+                ]);
+            }
+
+
+        }else{
+            $findclient=Cliente::where("name",$nameclient_lower)->where("last_name",$apellidopcli_lower)->where("mother_last_name",$apellidomcli_lower)->first();
         if($findclient){
             if($findclient->email!=$emailclien){
                 $findclient->email=$emailclien;
@@ -331,7 +374,7 @@ class HomeSuperAdminController extends Controller
             ]);
             $imageproduct=ImgProducto::create([
                 "id_productMai"=>$idproducto->id,
-                "id_img"=>$image_id->id,
+                "id_img"=>$image_id->id_img,
             ]);
 
             if($tecnicocargo=="-1"){
@@ -342,7 +385,7 @@ class HomeSuperAdminController extends Controller
                     "status"=>"En fila",
                     "is_finish"=>0,
                     "descripcionproblema"=>$descripcionproblema,
-                    "id_admin"=>$admindata->id,
+                    "id_admin"=>$admindata->id_img,
 
                 ]);
             }else{
@@ -378,14 +421,14 @@ class HomeSuperAdminController extends Controller
             ]);
             $imageproduct=ImgProducto::create([
                 "id_productMai"=>$idproducto->id,
-                "id_img"=>$image_id->id,
+                "id_img"=>$image_id->id_img,
             ]);
 
             if($tecnicocargo=="-1"){
                 $mentenimineto=Maintenance::create([
                     "foliId"=>$folioproducto,
                     "id_productMai"=>$idproducto->id,
-                    "id_cliente"=>$nuevocliente->id,
+                    "id_cliente"=>$nuevocliente->id_cliente,
                     "status"=>"En fila",
                     "is_finish"=>0,
                     "descripcionproblema"=>$descripcionproblema,
@@ -397,7 +440,7 @@ class HomeSuperAdminController extends Controller
                 $mentenimineto=Maintenance::create([
                     "foliId"=>$folioproducto,
                     "id_productMai"=>$idproducto->id,
-                    "id_cliente"=>$nuevocliente->id,
+                    "id_cliente"=>$nuevocliente->id_cliente,
                     "status"=>"En fila",
                     "is_finish"=>0,
                     "descripcionproblema"=>$descripcionproblema,
@@ -412,6 +455,9 @@ class HomeSuperAdminController extends Controller
 
 
         }
+
+        }
+
 
 
 

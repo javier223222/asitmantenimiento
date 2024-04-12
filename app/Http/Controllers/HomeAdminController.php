@@ -50,7 +50,11 @@ class HomeAdminController extends Controller
 
     }
     public function equipo(){
-        return view("admin.normaladmin.equipo.addequipo.index");
+        $cliente=Cliente::all();
+        return view("admin.normaladmin.equipo.addequipo.index",
+        [
+            "clientes"=>$cliente
+        ]);
     }
     public function update($id){
         return view("admin.normaladmin.equipo.updateequipo.index",["id"=>$id]);
@@ -93,6 +97,8 @@ class HomeAdminController extends Controller
     public function store(Request $request){
         $inputimg=$request->file("fileproducto");
         $folioproducto=$request->input("folioproducto");
+        $tipoaddcliente=$request->input("tipoaddcliente");
+        $clienteselected=$request->input("clienteselected");
         $clunimg=new UpdateImgController();
         $obj=$clunimg->updateImg($inputimg);
         echo $obj["public_id"];
@@ -125,67 +131,90 @@ class HomeAdminController extends Controller
             $newbrand=$brandcontroller->addBrand($name_brandLower);
             $idproducto=$productocontroller->AddProducto($nameequipo,$categoria,$newbrand->id,$descripcionequi);
         }
-        $findclient=Cliente::where("name",$nameclient_lower)->where("last_name",$apellidopcli_lower)->where("mother_last_name",$apellidomcli_lower)->first();
-        if($findclient){
-            if($findclient->email!=$emailclien){
-                $findclient->email=$emailclien;
-                $findclient->save();
-            }
-            if($findclient->telefono!=$telefonoclien){
-                $findclient->telefono=$telefonoclien;
-                $findclient->save();
-            }
+        if($tipoaddcliente=="1"){
             $image_id=Img::create([
                 "url_imag"=>$obj["public_id"],
                 "url_public"=>$obj["url"],
             ]);
             $imageproduct=ImgProducto::create([
                 "id_productMai"=>$idproducto->id,
-                "id_img"=>$image_id->id,
+                "id_img"=>$image_id->id_img,
             ]);
 
             $mentenimineto=Maintenance::create([
                 "foliId"=>$folioproducto,
                 "id_productMai"=>$idproducto->id,
-                "id_cliente"=>$findclient->id_cliente,
+                "id_cliente"=>$clienteselected,
                 "status"=>"En fila",
                 "is_finish"=>0,
                 "descripcionproblema"=>$descripcionproblema,
                 "id_admin"=>$admindata->id,
 
             ]);
-
-
-
-
-
-
-
-
         }else{
-            $clientecontroller=new ClienteController();
-           $nuevocliente= $clientecontroller->addCliente($nameclient_lower,$apellidopcli_lower,$apellidomcli_lower,$emailclien,$telefonoclien);
-            $image_id=Img::create([
-                "url_imag"=>$obj["public_id"],
-                "url_public"=>$obj["url"],
-            ]);
-            $imageproduct=ImgProducto::create([
-                "id_productMai"=>$idproducto->id,
-                "id_img"=>$image_id->id,
-            ]);
+            $findclient=Cliente::where("name",$nameclient_lower)->where("last_name",$apellidopcli_lower)->where("mother_last_name",$apellidomcli_lower)->first();
+            if($findclient){
+                if($findclient->email!=$emailclien){
+                    $findclient->email=$emailclien;
+                    $findclient->save();
+                }
+                if($findclient->telefono!=$telefonoclien){
+                    $findclient->telefono=$telefonoclien;
+                    $findclient->save();
+                }
+                $image_id=Img::create([
+                    "url_imag"=>$obj["public_id"],
+                    "url_public"=>$obj["url"],
+                ]);
+                $imageproduct=ImgProducto::create([
+                    "id_productMai"=>$idproducto->id,
+                    "id_img"=>$image_id->id_img,
+                ]);
 
-            $mentenimineto=Maintenance::create([
-                "foliId"=>$folioproducto,
-                "id_productMai"=>$idproducto->id,
-                "id_cliente"=>$nuevocliente->id,
-                "status"=>"En fila",
-                "is_finish"=>0,
-                "descripcionproblema"=>$descripcionproblema,
-                "id_admin"=>$admindata->id,
-            ]);
+                $mentenimineto=Maintenance::create([
+                    "foliId"=>$folioproducto,
+                    "id_productMai"=>$idproducto->id,
+                    "id_cliente"=>$findclient->id_cliente,
+                    "status"=>"En fila",
+                    "is_finish"=>0,
+                    "descripcionproblema"=>$descripcionproblema,
+                    "id_admin"=>$admindata->id,
+
+                ]);
 
 
+
+
+
+
+
+
+            }else{
+                $clientecontroller=new ClienteController();
+               $nuevocliente= $clientecontroller->addCliente($nameclient_lower,$apellidopcli_lower,$apellidomcli_lower,$emailclien,$telefonoclien);
+                $image_id=Img::create([
+                    "url_imag"=>$obj["public_id"],
+                    "url_public"=>$obj["url"],
+                ]);
+                $imageproduct=ImgProducto::create([
+                    "id_productMai"=>$idproducto->id,
+                    "id_img"=>$image_id->id_img,
+                ]);
+
+                $mentenimineto=Maintenance::create([
+                    "foliId"=>$folioproducto,
+                    "id_productMai"=>$idproducto->id,
+                    "id_cliente"=>$nuevocliente->id_cliente,
+                    "status"=>"En fila",
+                    "is_finish"=>0,
+                    "descripcionproblema"=>$descripcionproblema,
+                    "id_admin"=>$admindata->id,
+                ]);
+
+
+            }
         }
+
 
 
 
