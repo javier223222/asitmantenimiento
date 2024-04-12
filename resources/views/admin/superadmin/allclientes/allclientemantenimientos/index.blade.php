@@ -23,7 +23,7 @@
           <img src={{asset("images/asitlogo.jpg")}} width="30" height="30" alt="">
         </a>
 
-              <a class="btn btn-light   my-2 my-sm-0" href={{route("equipo")}}>Agregar equipo</a>
+              <a class="btn btn-light   my-2 my-sm-0" href={{route("addMantenimiento")}}>Agregar equipo</a>
 
         <form class="form-inline"  action="{{ route('logoutA') }}" method="POST">
            @csrf

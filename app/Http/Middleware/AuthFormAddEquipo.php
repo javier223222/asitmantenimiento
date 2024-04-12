@@ -22,13 +22,10 @@ class AuthFormAddEquipo
        $descripcionproblema=$request->input("descripcionproblema");
        $marcaequipo=$request->input("marcaequipo");
        $categoria=$request->input("categoria");
-       $nombrecliente=$request->input("nombrecliente");
-       $apellidopcli=$request->input("apellidopcli");
-       $apellidomcli=$request->input("apellidomcli");
-       $emailclien=$request->input("emailclien");
-       $telefonoclien=$request->input("telefonoclien");
+       $tipoaddcliente=$request->input("tipoaddcliente");
 
-       if(!$inputimg || !$nameequipo || !$descripcionequi || !$descripcionproblema || !$marcaequipo || $categoria==0 || !$nombrecliente || !$apellidopcli || !$apellidomcli || !$emailclien || !$telefonoclien){
+
+       if(!$inputimg || !$nameequipo || !$descripcionequi || !$descripcionproblema || !$marcaequipo || $categoria==0 || $tipoaddcliente==0){
          Session::flash("erroradprud","Todos los campos son requeridos");
           return redirect()->back();
         }

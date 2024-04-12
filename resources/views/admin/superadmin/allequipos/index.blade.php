@@ -24,9 +24,8 @@
         </a>
         <form class="form-inline">
 
-            <button class="btn btn-light   my-2 my-sm-0" >
-              <a href={{route("equipo")}}>Agregar equipo</a>
-            </button>
+              <a class="btn btn-light" href={{route("addMantenimiento")}}>Agregar equipo</a>
+
           </form>
         <form class="form-inline"  action="{{ route('logoutA') }}" method="POST">
            @csrf

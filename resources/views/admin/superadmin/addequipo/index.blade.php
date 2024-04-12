@@ -78,7 +78,7 @@
             </div>
           </div>
           <div class="form-group row">
-
+            <label  class="col-sm-2 col-form-label">Tecnico:</label>
             <div class="col-sm-10">
                 <select name="tecnico" id="inputState" class="form-control" required>
                     <option value="0" selected>Elige el tecnico</option>
@@ -86,7 +86,7 @@
                     <option value="{{$item->id}}">{{$item->name}} {{$item->last_name}} {{$item->mother_last_name}}</option>
 
                     @endforeach
-                    <option value="-1">No defenido</option>
+                    <option value="-1">yo</option>
                   </select>
             </div>
           </div>
@@ -104,55 +104,68 @@
 
 
           </div>
+          <div id="showclienteexiostente" style="visibility: hidden">
+            <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Cliente:</label>
+                <div class="col-sm-10">
+                    <select name="clienteselected" id="cliente" class="form-control" >
+                        <option value="0" selected>Elige un cliente</option>
+                        @foreach ($clientes as $item)
+                        <option value="{{$item->id_cliente}}">{{$item->name}} {{$item->last_name}} {{$item->mother_last_name}}</option>
 
-          <div cla>
-
+                        @endforeach
+                      </select>
+                </div>
+              </div>
           </div>
           <div id="showform" style="visibility: hidden">
             <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Nombre del cliente:</label>
                 <div class="col-sm-10">
                   <input placeholder="Ingrese el nombre del cliente"
-                   name="nombrecliente" style="background-color: white" type="text"  class="form-control" required>
+                   name="nombrecliente" style="background-color: white" type="text"  class="form-control" >
                 </div>
               </div>
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Apellido Paterno del cliente:</label>
                 <div class="col-sm-10">
                   <input placeholder="Ingrese el Apellido paterno "
-                   name="apellidopcli" style="background-color: white" type="text"  class="form-control" required>
+                   name="apellidopcli" style="background-color: white" type="text"  class="form-control" >
                 </div>
               </div>
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Apellido Materno del cliente:</label>
                 <div class="col-sm-10">
                   <input placeholder="Ingrese el Apellido materno "
-                   name="apellidomcli" style="background-color: white" type="text"  class="form-control" required>
+                   name="apellidomcli" style="background-color: white" type="text"  class="form-control" >
                 </div>
               </div>
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Correo electronico del cliente:</label>
                 <div class="col-sm-10">
                   <input placeholder="Ingrese el correo electronico del cliente "
-                  name="emailclien" style="background-color: white" type="email"  class="form-control" required>
+                  name="emailclien" style="background-color: white" type="email"  class="form-control" >
                 </div>
               </div>
               <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Numero de telefono del cliente:</label>
                 <div class="col-sm-10">
                   <input placeholder="Ingrese el numero de telefono del cliente "
-                   name="telefonoclien" style="background-color: white" type="text"  class="form-control" required>
+                   name="telefonoclien" style="background-color: white" type="text"  class="form-control" >
                 </div>
               </div>
 
           </div>
 
 
-
-
           <button  class="btn btn-light">Agregar</button>
 
+
+
+
+
       </form>
+
       @if (session("erroradprud"))
       <p style="color:red">{{session("erroradprud")}}</p>
       @endif

@@ -35,7 +35,7 @@
 
 
               <a href="{{route("allmantenimientosclientes",["id"=>$item->id_cliente])}}" class="btn btn-primary">Ver equipos en mantenimiento</a>
-              <a href="#" class="btn btn-primary">Actualizar</a>
+          
 
 
 
