@@ -46,15 +46,17 @@ const pinstarmesaages=()=>{
         let div=document.createElement("div")
         if(message.cliente!=null){
             div.style.backgroundColor="#2FB3F1"
+            div.style.borderRadius="7px"
             div.innerHTML=`
-                <p>cliente</p>
+                <p>Cliente: </p>
                 <p>${message.message}</p>
             `
         }else{
 
             div.style.backgroundColor="#F1F1F1"
+            div.style.borderRadius="7px"
             div.innerHTML=`
-                <p>encargado</p>
+                <p>Encargado: </p>
                 <p>${message.message}</p>
             `
         }

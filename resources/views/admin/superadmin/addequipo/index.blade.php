@@ -1,164 +1,186 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <link rel="stylesheet" href={{ asset('css/admin/tecnico/addequipo/style.css') }}>
-    <style>
-        body{
-            color: white
-        }
-    </style>
-    <title>Agregar equipo</title>
+  <link rel="stylesheet" href={{ asset('css/admin/tecnico/addequipo/style.css') }}>
+  <style>
+    body {
+      color: white
+    }
+  </style>
+  <title>Agregar equipo</title>
 </head>
-<body>
 
-    <h1 style="color: white">Agregar Equipo</h1>
-    <form  action="{{route("addMantenimiento")}}" method="POST" enctype="multipart/form-data">
+<body>
+  <div class="containeradd">
+    <nav class="navbar">
+      <div class="d-flex">
+        <h1 style="color: white">Agregar Equipo</h1>
+      </div>
+
+
+    </nav>
+    <div class="containeradd">
+      <form action="{{ route('addMantenimiento') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group row">
-            <label style="color: white"  class="col-sm-2 col-form-label">Folio del equipo</label>
-            <div class="col-sm-10">
-                <input placeholder="Ingrese el folio del producto" name="folioproducto" style="background-color:
-                white" type="text"  class="form-control" required>
-            </div>
-          </div>
-         <div class="form-group row">
-            <label style="color: white"  class="col-sm-2 col-form-label">Foto del Equipo</label>
-            <div class="col-sm-10">
-              <input type="file" class="form-control-file" name="fileproducto" required >
-            </div>
-          </div>
-        <div class="form-group row">
-          <label  class="col-sm-2 col-form-label">Nombre del Equipo:</label>
+          <label style="color: white" class="col-sm-2 col-form-label">Folio del Equipo: </label>
           <div class="col-sm-10">
-            <input placeholder="Ingrese el nombre del producto" name="nombreproducto" style="background-color:
-             white" type="text"  class="form-control" required>
+            <input placeholder="Ingrese el folio del producto" name="folioproducto"
+              style="background-color:
+                white" type="text" class="form-control" required>
           </div>
+          <br></br>
         </div>
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Descripcion del Equipo:</label>
-            <div class="col-sm-10">
-                <textarea name="descripcionequi" class="form-control" id="descripciomdelequipo" rows="3" required></textarea>
+          <label style="color: white" class="col-sm-2 col-form-label">Foto del Equipo:</label>
+          <div class="col-sm-10">
+            <input type="file" class="form-control-file" name="fileproducto" required>
+          </div>
+          <br></br>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Nombre del Equipo: </label>
+          <div class="col-sm-10">
+            <input placeholder="Ingrese el nombre del producto" name="nombreproducto"
+              style="background-color:
+             white" type="text" class="form-control" required>
+          </div>
+          <br></br>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Descripción del Equipo:</label>
+          <div class="col-sm-10">
+            <textarea name="descripcionequi" class="form-control" id="descripciomdelequipo" rows="3" required></textarea>
 
-            </div>
+          </div>
+        </div>
+        <br></br>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Descripción del problema:</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" name="descripcionproblema" id="descripcionprobequipo" rows="3" required></textarea>
+          </div>
+        </div>
+        <br></br>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Marca del Equipo:</label>
+          <div class="col-sm-10">
+            <input placeholder="Ingrese la marca del producto" name="marcaequipo" style="background-color: white"
+              type="text" class="form-control" required>
+          </div>
+          <br></br>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Categoría del producto:</label>
+          <div class="col-sm-10">
+            <select name="categoria" id="inputState" class="form-control" required>
+              <option value="0" selected>Elige la categoria</option>
+              <option value="1">Tabletas</option>
+              <option value="2">Computadoras</option>
+              <option value="3">Telefonos</option>
+              <option value="4">Accesorios</option>
+              <option value="5">Impresoras</option>
+              <option value="6">Televisores</option>
+              <option value="7">Otro</option>
+            </select>
+          </div>
+          <br></br>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Tecnico:</label>
+          <div class="col-sm-10">
+            <select name="tecnico" id="inputState" class="form-control" required>
+              <option value="0" selected>Elige el tecnico</option>
+              @foreach ($tecnicos as $item)
+                <option value="{{ $item->id }}">{{ $item->name }} {{ $item->last_name }}
+                  {{ $item->mother_last_name }}
+                </option>
+              @endforeach
+              <option value="-1">yo</option>
+            </select>
+            <br></br>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Cliente:</label>
+          <div class="col-sm-10">
+            <select name="tipoaddcliente" id="tipoaddcliente" class="form-control" required>
+              <option value="0" selected>Elige una opcion</option>
+              <option value="1">Elegir un cliente existente</option>
+              <option value="2">Agregar uno nuevo</option>
+
+            </select>
+            <br></br>
           </div>
 
+
+        </div>
+        <div id="showclienteexiostente" style="visibility: hidden">
           <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Descripcion del problema Equipo:</label>
+            <label class="col-sm-2 col-form-label">Cliente:</label>
             <div class="col-sm-10">
-                <textarea class="form-control" name="descripcionproblema" id="descripcionprobequipo" rows="3" required></textarea>
+              <select name="clienteselected" id="cliente" class="form-control">
+                <option value="0" selected>Elige un cliente</option>
+                @foreach ($clientes as $item)
+                  <option value="{{ $item->id_cliente }}">{{ $item->name }} {{ $item->last_name }}
+                    {{ $item->mother_last_name }}</option>
+                @endforeach
+              </select>
+              <br></br>
+            </div>
+          </div>
+        </div>
+        <div id="showform" style="visibility: hidden">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nombre del cliente:</label>
+            <div class="col-sm-10">
+              <input placeholder="Ingrese el nombre del cliente" name="nombrecliente" style="background-color: white"
+                type="text" class="form-control">
+            </div>
+            <br></br>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Apellido Paterno del cliente:</label>
+            <div class="col-sm-10">
+              <input placeholder="Ingrese el Apellido paterno " name="apellidopcli" style="background-color: white"
+                type="text" class="form-control">
+            </div>
+            <br></br>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Apellido Materno del cliente:</label>
+            <div class="col-sm-10">
+              <input placeholder="Ingrese el Apellido materno " name="apellidomcli" style="background-color: white"
+                type="text" class="form-control">
+            </div>
+            <br></br>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Correo electronico del cliente:</label>
+            <div class="col-sm-10">
+              <input placeholder="Ingrese el correo electronico del cliente " name="emailclien"
+                style="background-color: white" type="email" class="form-control">
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Marca del Equipo:</label>
+            <label class="col-sm-2 col-form-label">Numero de telefono del cliente:</label>
             <div class="col-sm-10">
-              <input placeholder="Ingrese la marca del producto"
-              name="marcaequipo" style="background-color: white" type="text"  class="form-control" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Categoria del producto:</label>
-            <div class="col-sm-10">
-                <select name="categoria" id="inputState" class="form-control" required>
-                    <option value="0" selected>Elige la categoria</option>
-                    <option value="1">Tabletas</option>
-                    <option value="2">Computadoras</option>
-                    <option value="3">Telefonos</option>
-                    <option value="4">Accesorios</option>
-                    <option value="5">Impresoras</option>
-                    <option value="6">Televisores</option>
-                    <option value="7">Otro</option>
-                  </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Tecnico:</label>
-            <div class="col-sm-10">
-                <select name="tecnico" id="inputState" class="form-control" required>
-                    <option value="0" selected>Elige el tecnico</option>
-                    @foreach ($tecnicos as $item)
-                    <option value="{{$item->id}}">{{$item->name}} {{$item->last_name}} {{$item->mother_last_name}}</option>
-
-                    @endforeach
-                    <option value="-1">yo</option>
-                  </select>
+              <input placeholder="Ingrese el numero de telefono del cliente " name="telefonoclien"
+                style="background-color: white" type="text" class="form-control">
             </div>
           </div>
 
-          <div  class="form-group row">
-            <label  class="col-sm-2 col-form-label">Cliente:</label>
-            <div class="col-sm-10">
-                <select name="tipoaddcliente" id="tipoaddcliente" class="form-control" required>
-                    <option value="0" selected>Elige una opcion</option>
-                    <option value="1" >Elegir un cliente existente</option>
-                    <option value="2">Agregar uno nuevo</option>
-
-                  </select>
-            </div>
+        </div>
 
 
-          </div>
-          <div id="showclienteexiostente" style="visibility: hidden">
-            <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Cliente:</label>
-                <div class="col-sm-10">
-                    <select name="clienteselected" id="cliente" class="form-control" >
-                        <option value="0" selected>Elige un cliente</option>
-                        @foreach ($clientes as $item)
-                        <option value="{{$item->id_cliente}}">{{$item->name}} {{$item->last_name}} {{$item->mother_last_name}}</option>
-
-                        @endforeach
-                      </select>
-                </div>
-              </div>
-          </div>
-          <div id="showform" style="visibility: hidden">
-            <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Nombre del cliente:</label>
-                <div class="col-sm-10">
-                  <input placeholder="Ingrese el nombre del cliente"
-                   name="nombrecliente" style="background-color: white" type="text"  class="form-control" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Apellido Paterno del cliente:</label>
-                <div class="col-sm-10">
-                  <input placeholder="Ingrese el Apellido paterno "
-                   name="apellidopcli" style="background-color: white" type="text"  class="form-control" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Apellido Materno del cliente:</label>
-                <div class="col-sm-10">
-                  <input placeholder="Ingrese el Apellido materno "
-                   name="apellidomcli" style="background-color: white" type="text"  class="form-control" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Correo electronico del cliente:</label>
-                <div class="col-sm-10">
-                  <input placeholder="Ingrese el correo electronico del cliente "
-                  name="emailclien" style="background-color: white" type="email"  class="form-control" >
-                </div>
-              </div>
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Numero de telefono del cliente:</label>
-                <div class="col-sm-10">
-                  <input placeholder="Ingrese el numero de telefono del cliente "
-                   name="telefonoclien" style="background-color: white" type="text"  class="form-control" >
-                </div>
-              </div>
-
-          </div>
-
-
-          <button  class="btn btn-light">Agregar</button>
+        <button class="btn btn-light">Agregar</button>
 
 
 
@@ -166,11 +188,14 @@
 
       </form>
 
-      @if (session("erroradprud"))
-      <p style="color:red">{{session("erroradprud")}}</p>
+      @if (session('erroradprud'))
+        <p style="color:red">{{ session('erroradprud') }}</p>
       @endif
-  @vite('resources/js/optionsaddcliente.js')
-  <script></script>
+      @vite('resources/js/optionsaddcliente.js')
+      <script></script>
+
+    </div>
 
 </body>
+
 </html>
