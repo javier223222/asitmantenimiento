@@ -12,22 +12,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset("css/cliente/style.css")}}">
+    <link rel="stylesheet" href="{{asset("css/cliente/home/style.css")}}">
 
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-estilo">
         <div class="container">
           <a class="navbar-brand" href="#">
-            <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+            <img src="/images/asit.png" alt="" width="90" height="50">
           </a>
+          <h1 class="ttil">Seguimiento de equipo en mantenimiento</h1>
           <form action="{{route("salircliente")}}" method="POST" class="d-flex">
 
-            <button class="btn btn-outline-success" >Salir</button>
+            <button class="btn btn-salir" >Salir</button>
           </form>
         </div>
       </nav>
-
+    <div class="contenedor-carta">
     <div class="d-flex d-flex justify-content-center vh-100">
 
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -94,6 +95,7 @@
         </div>
 
 
+    </div>
     </div>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     @vite('resources/js/status.js')

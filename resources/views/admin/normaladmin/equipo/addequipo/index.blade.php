@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,18 +15,19 @@
     <title>Agregar equipo</title>
 </head>
 <body>
-    <h1 style="color: white">Agregar Equipo</h1>
+    <h1 class="titulo-Agr">Agregar Equipo</h1>
     <form  action="{{route("newequipo")}}" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="estilo">
         <div class="form-group row">
-            <label style="color: white"  class="col-sm-2 col-form-label">Folio del equipo</label>
+            <label style="color: white"  class="col-sm-2 col-form-label">Folio del equipo:</label>
             <div class="col-sm-10">
                 <input placeholder="Ingrese el folio del producto" name="folioproducto" style="background-color:
                 white" type="text"  class="form-control" required>
             </div>
           </div>
          <div class="form-group row">
-            <label style="color: white"  class="col-sm-2 col-form-label">Foto del Equipo</label>
+            <label style="color: white"  class="col-sm-2 col-form-label">Foto del Equipo:</label>
             <div class="col-sm-10">
               <input type="file" class="form-control-file" name="fileproducto" required >
             </div>
@@ -41,7 +40,7 @@
           </div>
         </div>
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Descripcion del Equipo:</label>
+            <label  class="col-sm-2 col-form-label">Descripción del Equipo:</label>
             <div class="col-sm-10">
                 <textarea name="descripcionequi" class="form-control" id="descripciomdelequipo" rows="3" required></textarea>
 
@@ -49,7 +48,7 @@
           </div>
 
           <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Descripcion del problema Equipo:</label>
+            <label  class="col-sm-2 col-form-label">Descripción del problema Equipo:</label>
             <div class="col-sm-10">
                 <textarea class="form-control" name="descripcionproblema" id="descripcionprobequipo" rows="3" required></textarea>
             </div>
@@ -62,7 +61,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Categoria del producto:</label>
+            <label  class="col-sm-2 col-form-label">Categoría del producto:</label>
             <div class="col-sm-10">
                 <select name="categoria" id="inputState" class="form-control" required>
                     <option value="0" selected>Elige la categoria</option>
@@ -85,7 +84,7 @@
                     <option value="2">Agregar uno nuevo</option>
 
                   </select>
-            </div>
+             </div>
 
 
           </div>
@@ -141,8 +140,12 @@
               </div>
 
           </div>
-
-          <button  class="btn btn-light">Agregar</button>
+          <div class="contenedor-btn">
+          <button  class="btn btn-agregar">Agregar</button>
+          </div>
+          </div>
+          
+          
 
       </form>
       @if (session("erroradprud"))

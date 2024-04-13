@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
+body{
+    background-color: #1F1F29;
+    color: #E1E1E5;
+    font-family: Inria sans;
+}
+.titulo{
+    display: flex;
+    justify-content: center;
+}
+.contenedor{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.con-btn{
+    display: flex;
+    justify-content: space-evenly;
+}
+.boton-Ac{
+    background-color: #E1E1E5 !important;
+    color: #1F1F29!important;
+}
