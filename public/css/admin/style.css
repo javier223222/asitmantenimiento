@@ -1,3 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
 body{
     background-color: #0C2D57;
+    font-family: Inria sans;
+}
+
+.title{
+    color: #E1E1E5;
+}
+
+.btn_blue{
+    background-color: #0C2D57;
+    color: #E1E1E5;
+}
+.btn_blue:hover, .btn_blue:focus {
+    background-color: #0c2a53;
+    color: #E1E1E5;
+}
+.containeradd{
+    width: 20vw;
+}
+.search-input{
+    border-radius: 7px;
+    border-color: white;
+    width: 25vw;
+    height: 2.5vw;
 }

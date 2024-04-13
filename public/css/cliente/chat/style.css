@@ -1,3 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
 body{
-    background-color: #E1E1E5;
+    background-color: #0C2D57;
+    font-family: Inria sans;
+}
+
+.chat-input{
+    border-radius: 7px;
+    border-color: white;
+    width: 25vw;
+    height: 2.5vw;
+}
+.containermessage{
+    width: 25vw;
+}
+.title{
+    color:white;
+}
+.containerchat{
+    margin-left: 25px;
 }
