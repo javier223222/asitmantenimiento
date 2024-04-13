@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
 body{
-    background-color: #0C2D57;
-    color: white;
+    background-color: #2FB3F1;
+    color: #E1E1E5;
     font-family: Inria sans;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body{
   }
   .primero {
     width: 50%;
-    background-color:#1F1F29;
+    background-color:#E1E1E5;
     display: flex;
     justify-content: center;
     
@@ -25,11 +25,11 @@ body{
   }
   .segundo {
     width: 50%;
-    background-color:#0C2D57;
+    background-color:#2FB3F1;
     display: flex;
     justify-content: center;
   }
-  .formulario {
+  .formu {
     margin-top: 150px;
   }
   
@@ -46,8 +46,8 @@ body{
     margin-top: 10px;
     width: 20%;
     padding: 10px;
-    background-color: #000;
-    color: #fff;
+    background-color: #E1E1E5;
+    color: #2FB3F1;
     border: none;
     border-radius: 3px;
     cursor:pointer;

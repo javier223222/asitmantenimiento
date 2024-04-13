@@ -18,9 +18,9 @@
     <title>Tecnico</title>
 </head>
 <body>
-    <nav class="navbar navcoloradmin">
+    <nav style="background-color: #1F1F29"  class="navbar navbar-expand-lg" >
         <a class="navbar-brand" href="#">
-          <img src={{asset("images/asitlogo.jpg")}} width="30" height="30" alt="">
+          <img src={{asset("images/asitw.png")}} width="90" height="50" alt="">
         </a>
         <form class="form-inline">
 
