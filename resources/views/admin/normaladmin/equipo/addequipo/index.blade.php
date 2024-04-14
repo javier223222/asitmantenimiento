@@ -15,9 +15,10 @@
     <title>Agregar equipo</title>
 </head>
 <body>
-    <h1 style="color: white">Agregar Equipo</h1>
+<h1 class="titulo-Agr">Agregar Equipo</h1>
     <form  action="{{route("newequipo")}}" method="POST" enctype="multipart/form-data">
         @csrf
+        <div class="estilo">
         <div class="form-group row">
             <label style="color: white"  class="col-sm-2 col-form-label">Folio del equipo</label>
             <div class="col-sm-10">
@@ -139,8 +140,11 @@
               </div>
 
           </div>
-
-          <button  class="btn btn-light">Agregar</button>
+          <div class="contenedor-btn">
+          <button  class="btn btn-agregar">Agregar</button>
+          </div>
+          </div>
+         
 
       </form>
       @if (session("erroradprud"))

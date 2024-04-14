@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href={{ asset('css/admin/tecnico/addequipo/style.css') }}>
+    <link rel="stylesheet" href={{ asset('css/admin/tecnico/updatequipo/style.css') }}>
     <title>Actualizar equipo</title>
     <style>
         body{
@@ -20,11 +20,12 @@
         </div>
 
     @endif
+    <div class="contenedor">
   <form action="{{route("updatemetho")}}" method="POST"  enctype="multipart/form-data">
     @method("PATCH")
     @csrf
 
-    <h1>foto del equipo</h1>
+    <h1 class="titulo">Foto del equipo</h1>
   <label for="file">
   <h1>cambiar</h1>
   </label>
@@ -62,13 +63,17 @@
 
 
 
+ 
+  <div class="con-btn">
+  <button type="submit" class="btn boton-Ac">Actualizar</button>
+  </div>
 
-  <button type="submit">Actualizar</button>
+
 
 
   </form>
 
-
+      </div>
 </body>
 @vite("resources/js/updateequipo.js")
 <script>

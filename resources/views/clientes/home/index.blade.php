@@ -16,18 +16,20 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-estilo">
         <div class="container">
           <a class="navbar-brand" href="#">
-            <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+            <img src="/images/asitw.png" alt="" width="90" height="50">
           </a>
+          <h1 class="ttil">Seguimiento de equipo en mantenimiento</h1>
+
           <form action="{{route("salircliente")}}" method="POST" class="d-flex">
 
-            <button class="btn btn-outline-success" >Salir</button>
+            <button class="btn btn-salir" >Salir</button>
           </form>
         </div>
       </nav>
-
+    <div class="contenedor-carta">
     <div class="d-flex d-flex justify-content-center vh-100">
 
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -91,6 +93,7 @@
                 </div>
               </div>
 
+        </div>
         </div>
 
 
