@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 // las rutas estan aqui
 Route::get("/",function(){
-    echo "Pagina en contruccion";
+    return view('home');
 })->name("principal");
 Route::middleware("authenticationUser")->group(function(){
     Route::get("/login/admin",[LoginController::class,"index"])->name("loginA");

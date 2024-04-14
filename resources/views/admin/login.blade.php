@@ -23,11 +23,11 @@
             <h1>Mantenimiento Seguro</h1>
             </div>
             <div>
-            <input type="text" name="username" placeholder="ingrese su Usuario" class="campo">
+            <input type="text" name="username" placeholder="Ingrese su Usuario" class="campo">
             </div>
            
            <div>
-           <input type="password" name="password" placeholder="ingrese su password" class="campo">
+           <input type="password" name="password" placeholder="Ingrese su password" class="campo">
            </div>
             <button type="submit" class="boton">Entrar</button>
         </form>

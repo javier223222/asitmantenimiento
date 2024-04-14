@@ -20,3 +20,29 @@ body{
 .contenedor-carta{
     margin-top:10px;
 }
+.clientside{
+    background-color: #E1E1E5;
+    color: #2FB3F1;
+    height: 50vw;
+  }
+  .clientbtn{
+    background-color: #2FB3F1;
+    color: #E1E1E5;
+  }
+  .clientbtn:hover{
+    background-color: #2FB3F1;
+    color: #E1E1E5;
+  }
+  .adminside{
+    background-color: #1F1F29;
+    color: #E1E1E5;
+    height: 50vw;
+  }
+  .adminbtn{
+    background-color: #E1E1E5;
+    color: #1F1F29;
+  }
+  .adminbtn:hover{
+    background-color: #E1E1E5;
+    color: #1F1F29;
+  }
