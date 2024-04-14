@@ -19,22 +19,33 @@
 </head>
 <body>
     <nav style="background-color: #1F1F29"  class="navbar navbar-expand-lg" >
+       <div class="container">
         <a class="navbar-brand" href="#">
           <img src={{asset("images/asitw.png")}} width="90" height="50" alt="">
         </a>
+        <div class="mx-auto">
+        <h1 class="navbar-text title">Técnicos y equipos</h1>
+        </div>
+        <div class="boton-margin">
+
         <form class="form-inline">
 
-            <button class="btn btn-light   my-2 my-sm-0" >
-              <a href={{route("equipo")}}>Agregar equipo</a>
+            <button class="btn boton-a" >
+              <a href={{route("equipo")}} class="color-boton" >Agregar equipo</a>
             </button>
           </form>
+</div>
         <form class="form-inline"  action="{{ route('logoutA') }}" method="POST">
            @csrf
-            <button class="btn botonsal   my-2 my-sm-0" type="submit">Salir</button>
+            <button class="btn btn_blue" type="submit">Salir</button>
           </form>
+</div>
 
       </nav>
       <div class="form-group">
+        <div class="barra-determinada">
+
+        
         <label for="sel1" style="color: white">Buscar por:</label>
         <select  class="form-control" name="selectsearch" id="optionsearch">
           <option value="1" >Por cliente</option>
@@ -43,12 +54,17 @@
 
 
         </select>
+        <div class="form-buscar">
+
         <input type="search" id="searchinput" name="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        </div>
       </div>
+      </div>
+      <div class="contenedor-botones-busqueda">
       <a href={{route("admin")}} class="btn btn-primary">Ver todos los equipos</a>
         <a href={{route("admin",["finish"=>1,"all"=>0])}} class="btn btn-primary">Ver los equipos terminados</a>
         <a href={{route("admin",["finish"=>0,"all"=>1])}} class="btn btn-primary">Ver los equipos en proceso</a>
-
+        </div>
       <div id="showsearch" class="row notshow">
 
       </div>
@@ -65,11 +81,12 @@
 
       <div id="showall" class="row">
         @if (empty($mantenimientos[0]))
-        <h1>no hay mantenimientos</h1>
+        <h1 class="advertencia">No hay mantenimientos</h1>
 
     @else
         @foreach ($mantenimientos as $item)
         <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="carta-m">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{$item->product->imagePrduct[0]->img->url_public}}" alt="Card image cap">
                 <div class="card-body">
@@ -124,7 +141,7 @@
                   </div>
                 </div>
               </div>
-
+              </div>
         </div>
 
         @endforeach

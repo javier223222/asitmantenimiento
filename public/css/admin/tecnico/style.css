@@ -16,6 +16,7 @@ body{
 }
 .boton-a{
     background-color: #0C2D57 !important;
+    margin-right: 10px;
 }
 .color-boton{
     color: #E1E1E5;
@@ -37,4 +38,10 @@ body{
 }
 .carta-m{
 margin-top: 20px;
+}
+.advertencia{
+    color: #E1E1E5;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
