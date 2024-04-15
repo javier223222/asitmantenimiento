@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Inria+Sans:300,300italic,regular,italic,700,700italic);
+body{
+    background-color: #0C2D57;
+    font-family: Inria sans;
+}
+.titulo-Agr{
+    display: flex;
+    justify-content: center;
+    color: #E1E1E5;
+}
+.estilo{
+    line-height: 20px;
+    width: 1200px;
+
+}
+.cambiar{
+    display: flex;
+}
+.contenedor-btn{
+    display: flex;
+    justify-content: end;
+    margin-top: -264px;
+}
+.btn-agregar{
+    background-color: #000 !important;
+    color: white!important;
+}
